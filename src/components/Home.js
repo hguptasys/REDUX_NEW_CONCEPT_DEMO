@@ -32,7 +32,7 @@ var callback =(
   commitTime, // when React committed this update
   interactions // the Set of interactions belonging to this update
 ) =>{
-  console.log("PROFILER===>",id,phase,baseDuration,actualDuration,startTime,commitTime,interactions)
+  // console.log("PROFILER===>",id,phase,baseDuration,actualDuration,startTime,commitTime,interactions)
 }
   return (
     <div>
