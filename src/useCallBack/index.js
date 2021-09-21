@@ -1,22 +1,26 @@
-import React, { useCallback, useState, useEffect, useMemo} from 'react'
-
+import React, { useCallback, useState, useEffect, useMemo, memo } from 'react'
+import UsecallBackChild from './UsecallBackChild'
 export default function CBK() {
   const [number, setNumber] = useState({ num1: 0, num2: 0 })
   const [result, setResult] = useState(0)
-  useEffect(() => {
-    console.log(number)
-  }, [number, result])
+  const [data, setData] = useState('')
 
-  const mCallBack = useMemo(() => {
+  var useCallBackData = useCallback(()=>{
+    console.log("useCallBack1")
+  },[result])
+
+ 
+
+  const mCallBack = () => {
+    console.log("useCallBack2")
+
     setResult(number.num2 + number.num1)
-   console.log("memo",result)
-  }, [number, result])
+  }
 
-  
-  console.log('result===>', result)
 
   return (
     <div>
+      <UsecallBackChild result={result} useCallBackchild={useCallBackData} />
       <p>callBack {result}</p>
       <input
         type="text"
@@ -31,7 +35,14 @@ export default function CBK() {
           setNumber({ num2: +e.target.value, num1: number.num1 })
         }
       />
+
       <button onClick={mCallBack}>ADD</button>
+      <br />
+      <input
+        type="text"
+        placeholder="please enter data"
+        onChange={(e) => setData(e.target.value)}
+      />
     </div>
   )
 }
